@@ -7,41 +7,6 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 
-// I
-
-  // integer
-
-// O
-
-  // integer (factorial of integer)
-
-// C
-
-  // must use recursion
-
-  // smallest input is 0
-
-// E
-
-  // should return null for negative integers
-
-
-// PSEUDO
-
-// if current number is less then 0
-
-  // return null
-
-// else if current number is 0 or current number is 1
-
-  // return 1
-
-// define a variable called result init with...
-  // n times the call to the recursive function with argument (current num - 1)
-
-// return result
-
-
 var factorial = function(n) {
   if (n < 0) {
     return null;
