@@ -149,7 +149,6 @@ var range = function(x, y) {
 */
 
 var exponent = function(base, exp) {
-  var isNegative = false;
   var result;
 
   if (exp === 0) {
@@ -157,26 +156,15 @@ var exponent = function(base, exp) {
   }
 
   if (exp > 0 && exp % 2 === 0) {
-    var optimize = function(base, exp) {
-      var result;
-      if (exp === 0) {
-        return 1;
-      }
-      result = base * exponent(base, (exp - 1));
-      return result;
-    };
-    result = optimize(base, exp / 2);
+    result = exponent(base, exp / 2);
     result = result * result;
-  } else if (exp > 0) {
-    result = base * exponent(base, exp - 1);
+  } else if (exp > 0 && exp % 2 !== 0) {
+    result = exponent(base, exp - 1);
+    result = result * base;
   } else if (exp < 0) {
-    isNegative = true;
-    result = exponent(base, exp * -1);
+    result = 1 / exponent(base, exp * -1);
   }
 
-  if (isNegative) {
-    return 1 / result;
-  }
   return result;
 };
 
