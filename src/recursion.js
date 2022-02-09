@@ -108,7 +108,76 @@ var range = function(x, y) {
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
+
+/*
+  // IOCE
+
+  in:
+    - base and exponent (integer, integer)
+
+  out:
+    - Integer
+
+  con:
+    - must use recursion
+
+  edge:
+    - works with negative and non-negative exponents
+    - returns 1 when exponent is 0
+    - returns base when exponent is 1
+
+  // PSEUDO
+
+  // define variable `result`;
+
+  // if exp is 0
+    // return 1
+
+  // if exp is positive and even
+    // init `result` with a call to exponent() with arguments
+      - base
+      - exp / 2
+    // init `result` with `result` * `result`;
+
+  // else if exp is positive and odd
+    // init `result` with a call to exponent() with arguments
+      - base
+      - exp - 1
+    // init `result` with `result` * exponent
+
+  // return result
+*/
+
 var exponent = function(base, exp) {
+  var isNegative = false;
+  var result;
+
+  if (exp === 0) {
+    return 1;
+  }
+
+  if (exp > 0 && exp % 2 === 0) {
+    var optimize = function(base, exp) {
+      var result;
+      if (exp === 0) {
+        return 1;
+      }
+      result = base * exponent(base, (exp - 1));
+      return result;
+    };
+    result = optimize(base, exp / 2);
+    result = result * result;
+  } else if (exp > 0) {
+    result = base * exponent(base, exp - 1);
+  } else if (exp < 0) {
+    isNegative = true;
+    result = exponent(base, exp * -1);
+  }
+
+  if (isNegative) {
+    return 1 / result;
+  }
+  return result;
 };
 
 // 8. Determine if a number is a power of two.
