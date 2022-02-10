@@ -200,7 +200,9 @@ var reverse = function(string) {
 var palindrome = function(string) {
   string = string.toLowerCase();
 
-  if (string.length === 1) {
+  if (string.length === 0) {
+    return false;
+  } else if (string.length === 1) {
     return true;
   } else if (string.length === 2 && string[0] === string[1]) {
     return true;
