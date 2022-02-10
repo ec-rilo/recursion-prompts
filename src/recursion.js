@@ -198,7 +198,66 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toLowerCase();
+
+  if (string.length === 1) {
+    return true;
+  } else if (string.length === 2 && string[0] === string[1]) {
+    return true;
+  }
+
+  var result = false;
+
+  if (string[0] === string[string.length - 1]) {
+    result = palindrome(string.slice(1, string.length - 1));
+  }
+
+  return result;
 };
+
+/*
+Palindrome Definition:
+  - a word, phrase, or sequence that reads the same backward as forward, e.g., madam or nurses run.
+
+IOCE
+
+in:
+  - (string) a word
+
+out:
+  - (boolean)
+
+cons:
+  - does not use reverse function
+  - ignore spaces and capital letters
+  - use recursion by calling self
+  - invoked only with one argument
+
+edge:
+  - none
+
+PSEUDO
+
+// init string with the same string but all lowercase letters
+
+// if string length is 1
+  // return true
+
+// else if string length is 2 and first character is the same as second character
+  // return true
+
+// define a variable called result init with false
+
+// if the first letter is the same as the last letter
+  // init result with:
+    // a call the palindrome function without the first or last letter passed in as string
+
+// return result
+
+
+  var newStr = string.slice(1);
+  var temp = string.slice(0, 1);
+*/
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
